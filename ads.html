@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock Video Download</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Telegram Web App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- Adsgram SDK -->
+    <script src="https://adsgram.ai/sdk/v1/adcontroller.js"></script>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: rgba(22, 27, 34, 0.8);
+            --text-color: #ffffff;
+            --text-secondary: #8b949e;
+            --accent-color: #58a6ff;
+            --accent-hover: #1f6feb;
+            --success-color: #2ea44f;
+            --border-color: rgba(240, 246, 252, 0.1);
+        }
+
+        /* Match Telegram Web App Theme if available */
+        body.tg {
+            --bg-color: var(--tg-theme-bg-color, #0d1117);
+            --text-color: var(--tg-theme-text-color, #ffffff);
+            --text-secondary: var(--tg-theme-hint-color, #8b949e);
+            --accent-color: var(--tg-theme-button-color, #58a6ff);
+            --accent-hover: var(--tg-theme-button-color, #1f6feb);
+            --card-bg: rgba(22, 27, 34, 0.4);
+            --border-color: rgba(240, 246, 252, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transform: translateY(0);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .icon-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #1f6feb 0%, #58a6ff 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(31, 111, 235, 0.4);
+        }
+
+        .icon-container svg {
+            width: 40px;
+            height: 40px;
+            fill: #ffffff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(88, 166, 255, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background-color: var(--text-secondary);
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .loader {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24">
+                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+            </svg>
+        </div>
+        <h1 id="title">Unlock Download</h1>
+        <p id="description">Please watch a short advertisement to verify your request and start the download inside the bot.</p>
+        
+        <button id="ad-btn" class="btn" onclick="startAdFlow()">
+            <div id="btn-loader" class="loader"></div>
+            <span id="btn-text">🔓 Watch Ad & Unlock</span>
+        </button>
+
+        <div class="footer">
+            Secured by Telegram Ad Gate
+        </div>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        
+        // Apply Telegram App CSS classes if opened in Telegram
+        if (tg.platform && tg.platform !== 'unknown') {
+            document.body.classList.add('tg');
+        }
+
+        tg.ready();
+        tg.expand();
+
+        // Parse query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const shortId = urlParams.get('short_id');
+        const adsgramBlockId = urlParams.get('adsgram');
+        const monetagUrl = urlParams.get('monetag_url');
+
+        // References
+        const adBtn = document.getElementById('ad-btn');
+        const btnLoader = document.getElementById('btn-loader');
+        const btnText = document.getElementById('btn-text');
+
+        function setSubmittingState(isSubmitting, text = "") {
+            adBtn.disabled = isSubmitting;
+            if (isSubmitting) {
+                btnLoader.style.display = 'block';
+                btnText.textContent = text || 'Loading Ad...';
+            } else {
+                btnLoader.style.display = 'none';
+                btnText.textContent = '🔓 Watch Ad & Unlock';
+            }
+        }
+
+        function triggerCompletion() {
+            setSubmittingState(true, "Unlocking...");
+            
+            // Send event data back to the Telegram Bot (closes Web App automatically)
+            const payload = JSON.stringify({
+                short_id: shortId,
+                status: 'completed'
+            });
+            
+            try {
+                tg.sendData(payload);
+            } catch (err) {
+                console.error("sendData error:", err);
+                alert("Verification complete! You can now close this window and check the bot.");
+            }
+        }
+
+        function startAdFlow() {
+            if (!shortId) {
+                alert("Error: Missing session ID. Please restart the process in the bot.");
+                return;
+            }
+
+            if (adsgramBlockId && adsgramBlockId !== 'None' && adsgramBlockId.trim() !== '') {
+                // Flow A: Adsgram SDK rewarded video
+                setSubmittingState(true);
+                
+                const AdController = window.Adsgram.init({ blockId: adsgramBlockId });
+                
+                AdController.show().then((result) => {
+                    // Ad completed successfully
+                    triggerCompletion();
+                }).catch((error) => {
+                    // Error or skipped
+                    console.error("Adsgram error:", error);
+                    alert("Please watch the full video ad to unlock your download.");
+                    setSubmittingState(false);
+                });
+            } else if (monetagUrl && monetagUrl !== 'None' && monetagUrl.trim() !== '') {
+                // Flow B: Monetag Smartlink Redirect
+                setSubmittingState(true, "Redirecting to ad...");
+                
+                // Open Monetag Smartlink in a new tab/window
+                window.open(monetagUrl, '_blank');
+                
+                // Keep the Web App open, show countdown to unlock
+                let secondsRemaining = 6;
+                btnLoader.style.display = 'none';
+                
+                const interval = setInterval(() => {
+                    secondsRemaining--;
+                    if (secondsRemaining > 0) {
+                        btnText.textContent = `Unlocking in ${secondsRemaining}s...`;
+                    } else {
+                        clearInterval(interval);
+                        triggerCompletion();
+                    }
+                }, 1000);
+            } else {
+                // No ad configured - fallback to instant unlock for testing
+                triggerCompletion();
+            }
+        }
+    </script>
+</body>
+</html>
